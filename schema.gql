@@ -1,0 +1,96 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Category {
+  id: ID!
+  name: String!
+  posts: [Product!]!
+}
+
+input CreateCategoryDto {
+  name: String!
+}
+
+input CreatePostDto {
+  author: Int
+  content: String!
+  title: String!
+}
+
+input CreateProductDto {
+  cost: Float!
+  count: Float!
+  name: String!
+}
+
+input CreateUserDto {
+  email: String!
+  name: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  create(createCategory: CreateCategoryDto!): Category!
+  createPost(authorId: Float!, createPost: CreatePostDto!): Post!
+  createProduct(createProduct: CreateProductDto!): Product!
+  createUser(createUser: CreateUserDto!): User!
+  remove(id: ID!): Float!
+  removeProduct(id: ID!): Float!
+  removeUser(id: ID!): Float!
+  update(id: ID!, updateCategory: UpdateCategoryDto!): Category!
+  updateProduct(id: ID!, updateProduct: UpdateProductDto!): Product!
+  updateUser(id: ID!, updateUser: UpdateUserDto!): User!
+}
+
+type Post {
+  author: User!
+  content: String!
+  id: ID!
+  title: String!
+}
+
+type Product {
+  author: Category!
+  cost: Float!
+  count: Float!
+  id: ID!
+  name: String!
+}
+
+type Query {
+  allProduct: [Product!]!
+  findAll: [Category!]!
+  findAllUser: [User!]!
+  findOne(id: ID!): Product!
+  findOneUser(id: ID!): User!
+  oneProduct(id: ID!): Product!
+}
+
+input UpdateCategoryDto {
+  name: String
+}
+
+input UpdateProductDto {
+  cost: Float
+  count: Float
+  name: String
+}
+
+input UpdateUserDto {
+  email: String
+  name: String
+}
+
+type User {
+  createAt: DateTime!
+  email: String!
+  id: ID!
+  name: String
+  posts: [Post!]!
+  updateAt: DateTime!
+}
